@@ -27,7 +27,7 @@ const CheckOut = ({ checkout, productQuantity }) => {
       )
     );
   };
-  // console.log(increment);
+  // decrease product
   const handleDecrement = (productId) => {
     setCartProduct((cartProduct) =>
       cartProduct.map((item) =>
@@ -42,17 +42,29 @@ const CheckOut = ({ checkout, productQuantity }) => {
       )
     );
   };
+  // count subtotal
+  const total = cartProduct.map((item) => {
+    return item.value * parseInt(item.price);
+  });
+  const sum = total.reduce((a, b) => a + b, 0);
+
+  // delete product
+  const handleDelete = (productId) => {
+    const deleteItem = cartProduct.filter((c) => c.id === productId);
+    setCartProduct(deleteItem);
+  };
   return (
     <div className="row mt-5 gx-5">
       <div className="col-md-8">
         <CheckOutTable
+          handleDelete={handleDelete}
           cartProduct={cartProduct}
           handleDecrement={handleDecrement}
           handleIncrement={handleIncrement}
         />
       </div>
       <div className="col-md-4">
-        <CheckOutCart />
+        <CheckOutCart sum={sum} />
       </div>
     </div>
   );

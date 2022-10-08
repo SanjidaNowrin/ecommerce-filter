@@ -1,19 +1,17 @@
 import React from "react";
-
+import { AiOutlineClose } from "react-icons/ai";
 const CheckOutTable = ({
   cartProduct,
   productQuantity,
   handleIncrement,
   handleDecrement,
+  handleDelete,
 }) => {
   return (
     <div>
       <table className="table">
         <thead>
           <tr>
-            <th scope="col" style={{ width: "5%" }}>
-              #
-            </th>
             <th scope="col" style={{ width: "50%" }}>
               Product
             </th>
@@ -28,8 +26,11 @@ const CheckOutTable = ({
           return (
             <tbody key={id}>
               <tr>
-                <th scope="row">{index + 1}</th>
                 <td className="d-flex align-items-center ">
+                  <AiOutlineClose
+                    onClick={() => handleDelete(id)}
+                    className="me-3"
+                  />
                   <img
                     src={img}
                     alt="product"
