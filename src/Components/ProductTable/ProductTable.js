@@ -8,7 +8,7 @@ const ProductTable = ({
   productQuantity,
 }) => {
   return (
-    <div>
+    <div className="table-scrollable">
       <table className="table">
         <thead>
           <tr>

@@ -10,3 +10,7 @@
 .reset-btn {
   color: rgb(45, 171, 239);
 }
+.table-scrollable {
+  overflow-x: scroll;
+  box-shadow: 0 0 5px rgba(150, 150, 150, 0.35);
+}

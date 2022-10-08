@@ -8,7 +8,7 @@ const CheckOutTable = ({
   handleDelete,
 }) => {
   return (
-    <div>
+    <div className="table-scrollable">
       {cartProduct.length > 0 ? (
         <table className="table">
           <thead>
