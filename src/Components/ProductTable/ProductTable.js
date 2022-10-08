@@ -43,14 +43,17 @@ const ProductTable = ({
                 <td>{name}</td>
                 <td>{size}</td>
                 <td>
-                  <ImSmile2 className="me-2" />
-                  {stock}
+                  <div className="text-success">
+                    <ImSmile2 className="me-2" />
+                    {stock}
+                  </div>
                 </td>
                 <td>${price}</td>
                 <td>
-                  <div className="d-flex justify-content-around align-items-center">
+                  <div className="d-flex justify-content-evenly align-items-center">
                     <input
-                      placeholder="1"
+                      size="1"
+                      defaultValue={1}
                       type="text"
                       onBlur={(e) =>
                         handleQuantity({

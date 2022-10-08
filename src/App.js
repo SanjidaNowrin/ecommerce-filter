@@ -21,17 +21,21 @@ function App() {
   const handleCart = () => {
     setCheckout(checkedProduct);
   };
-  // console.log(checkedProduct);
+  console.log(checkedProduct);
 
   // handleQuantity
   const handleQuantity = (value) => {
     // console.log(value);
-
-    const newCart = [...productQuantity, value];
-    setQuantity(newCart);
+    if (!value) {
+      const newCart = [...productQuantity, 1];
+      setQuantity(newCart);
+    } else {
+      const newCart = [...productQuantity, value];
+      setQuantity(newCart);
+    }
   };
 
-  // console.log(productQuantity);
+  console.log(productQuantity);
   return (
     <div className="container">
       <BrowserRouter>

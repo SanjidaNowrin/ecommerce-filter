@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CheckOutTable from "./CheckOutTable";
 import CheckOutCart from "./CheckOutCart";
 const CheckOut = ({ checkout, productQuantity }) => {
-  // console.log(checkout);
+  console.log(checkout);
   const [cartProduct, setCartProduct] = useState([]);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const CheckOut = ({ checkout, productQuantity }) => {
               ...item,
               value:
                 parseInt(item.value) +
-                (parseInt(item.value) > parseInt(1) ? 1 : 0),
+                (parseInt(item.value) > parseInt(0) ? 1 : 0),
             }
           : item
       )
@@ -50,7 +50,7 @@ const CheckOut = ({ checkout, productQuantity }) => {
 
   // delete product
   const handleDelete = (productId) => {
-    const deleteItem = cartProduct.filter((c) => c.id === productId);
+    const deleteItem = cartProduct.filter((c) => c.id !== productId);
     setCartProduct(deleteItem);
   };
   return (

@@ -8,7 +8,7 @@ const Home = ({
   handleQuantity,
   handleCart,
   checkedProduct,
-  // productQuantity,
+  productQuantity,
 }) => {
   const [products, setProducts] = useState(Products);
   const [filterProducts, setFilterProducts] = useState([]);
@@ -32,16 +32,19 @@ const Home = ({
         f.name.toLowerCase().includes(search.toLowerCase())
       );
     }
-    // if (size === "All") {
-    //   updateData = updateData.filter((s) => s.category === category);
-    // }
-    // if (category === "Categories") {
-    //   updateData = updateData.filter((c) => c.size === size);
-    // }
-    // if (size === "All" && category === "Categories") {
-    //   updateData = products;
-    // }
-    // console.log(updateData);
+    if (size === "Size" && category) {
+      updateData = updateData.filter(
+        (c) => c.category === category && size === c.size
+      );
+    }
+    if (category === "Categories" && size) {
+      updateData = updateData.filter(
+        (s) => s.size === size && category === s.category
+      );
+    }
+    if (size === "Size" && category === "Categories") {
+      updateData = products;
+    }
     setFilterProducts(updateData);
   };
   useEffect(() => {
@@ -66,11 +69,11 @@ const Home = ({
       />
       {/* product table filter */}
       <ProductTable
-        // productQuantity={productQuantity}
         handleQuantity={handleQuantity}
         filterProducts={filterProducts}
         products={products}
         handleChecked={handleChecked}
+        productQuantity={productQuantity}
       />
     </div>
   );

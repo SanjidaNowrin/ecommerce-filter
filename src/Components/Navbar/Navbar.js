@@ -2,6 +2,7 @@ import React from "react";
 import { BiUndo } from "react-icons/bi";
 import { Link } from "react-router-dom";
 const category = [
+  "Categories",
   "Sneaker",
   "Pant",
   "Boot",
@@ -11,15 +12,13 @@ const category = [
   "Earphone",
   "Bottle",
 ];
-const size = ["S", "M", "L", "XL"];
+const size = ["Size", "S", "M", "L", "XL"];
 const Navbar = ({
   setSize,
   setCategory,
   setSearch,
   handleReset,
   handleCart,
-  checkedProduct,
-  setCheckout,
 }) => {
   return (
     <div className="row mb-4 mt-4">
@@ -46,7 +45,7 @@ const Navbar = ({
             </option>
           ))}
         </select>
-        <button className="btn btn ms-1" onClick={handleReset}>
+        <button className="btn btn ms-1 reset-btn" onClick={handleReset}>
           <BiUndo /> Reset
         </button>
       </div>
@@ -62,7 +61,7 @@ const Navbar = ({
         />
         <Link to="checkout">
           <button
-            className="btn btn-outline-success p-1 rounded-0"
+            className=" btn-color btn btn-outline-success p-2 rounded-0"
             onClick={handleCart}
           >
             Add To Cart
