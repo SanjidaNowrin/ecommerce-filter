@@ -24,6 +24,7 @@ const Navbar = ({
     <div className="row mb-4 mt-4">
       <div className="col-md-6 justify-content-start d-flex align-items-center">
         {/* categories options */}
+        <p className="me-1 mb-0">Category:</p>
         <select
           className="rounded p-1 me-3"
           onChange={(e) => setCategory(e.target.value)}
@@ -35,6 +36,7 @@ const Navbar = ({
           ))}
         </select>
         {/* size options */}
+        <p className="me-1 mb-0">Size:</p>
         <select
           className="rounded p-1"
           onChange={(e) => setSize(e.target.value)}

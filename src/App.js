@@ -9,12 +9,13 @@ function App() {
   const [productQuantity, setQuantity] = useState([]);
 
   // checked function
-  const handleChecked = (e) => {
-    const { value, checked } = e.target;
-    if (checked) {
-      setCheckedProduct([...checkedProduct, value]);
+  const handleChecked = (product) => {
+    // const { product, checked } = e.target;
+    if (product.checked) {
+      const newCheck = [...checkedProduct, product];
+      setCheckedProduct(newCheck);
     } else {
-      setCheckedProduct(checkedProduct.filter((e) => e !== value));
+      setCheckedProduct([]);
     }
   };
   // cart function
@@ -26,15 +27,12 @@ function App() {
   // handleQuantity
   const handleQuantity = (value) => {
     // console.log(value);
-    if (!value) {
-      const newCart = [...productQuantity, 1];
-      setQuantity(newCart);
-    } else {
-      const newCart = [...productQuantity, value];
-      setQuantity(newCart);
-    }
+
+    const newCart = [...productQuantity, value];
+    setQuantity(newCart);
   };
 
+  // console.log(checkout);
   console.log(productQuantity);
   return (
     <div className="container">

@@ -12,10 +12,10 @@ const Home = ({
 }) => {
   const [products, setProducts] = useState(Products);
   const [filterProducts, setFilterProducts] = useState([]);
-
   const [category, setCategory] = useState("");
   const [size, setSize] = useState("");
   const [search, setSearch] = useState("");
+  const [deleteValue, setDelete] = useState("");
 
   // filters function
 
@@ -27,11 +27,7 @@ const Home = ({
     if (size) {
       updateData = updateData.filter((f) => f.size === size);
     }
-    if (search) {
-      updateData = updateData.filter((f) =>
-        f.name.toLowerCase().includes(search.toLowerCase())
-      );
-    }
+
     if (size === "Size" && category) {
       updateData = updateData.filter(
         (c) => c.category === category && size === c.size
@@ -42,20 +38,28 @@ const Home = ({
         (s) => s.size === size && category === s.category
       );
     }
-    if (size === "Size" && category === "Categories") {
+    if (size === "" && category === "") {
       updateData = products;
     }
     setFilterProducts(updateData);
   };
-  useEffect(() => {
-    filterData();
-  }, [category, size, updateData, products, search]);
 
+  // search product
+  useEffect(() => {
+    if (search) {
+      const searchProduct = products.filter((f) =>
+        f.name.toLowerCase().includes(search.toLowerCase())
+      );
+      setFilterProducts(searchProduct);
+    }
+  }, [search, products]);
   // reset button
   const handleReset = () => {
     setFilterProducts(products);
   };
-
+  useEffect(() => {
+    filterData();
+  }, [category, updateData, products, size]);
   return (
     <div>
       {/* navbar filter */}

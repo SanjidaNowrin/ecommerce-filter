@@ -2,14 +2,26 @@ import React, { useState, useEffect } from "react";
 import CheckOutTable from "./CheckOutTable";
 import CheckOutCart from "./CheckOutCart";
 const CheckOut = ({ checkout, productQuantity }) => {
-  console.log(checkout);
+  // console.log(checkout);
   const [cartProduct, setCartProduct] = useState([]);
 
   useEffect(() => {
-    const cart = productQuantity.filter(({ id, name, price }) =>
-      checkout.includes(id)
-    );
-    setCartProduct(cart);
+    // const cart = checkout.filter(({ id, name, price }) =>
+    //   productQuantity.includes(id)
+    // );
+    const result = checkout.map((itemA) => {
+      return productQuantity
+        .filter((itemB) => itemB.id === itemA.id)
+        .reduce((combo, item) => ({ ...combo, ...item }), {
+          name: itemA.name,
+          img: itemA.img,
+          price: itemA.price,
+          quantity: "",
+        });
+    });
+
+    console.log(result);
+    setCartProduct(result);
   }, [checkout, productQuantity]);
 
   // increase product
@@ -19,9 +31,9 @@ const CheckOut = ({ checkout, productQuantity }) => {
         productId === item.id
           ? {
               ...item,
-              value:
-                parseInt(item.value) +
-                (parseInt(item.value) > parseInt(0) ? 1 : 0),
+              quantity:
+                parseInt(item.quantity) +
+                (parseInt(item.quantity) > parseInt(0) ? 1 : 0),
             }
           : item
       )
@@ -34,9 +46,9 @@ const CheckOut = ({ checkout, productQuantity }) => {
         productId === item.id
           ? {
               ...item,
-              value:
-                parseInt(item.value) -
-                (parseInt(item.value) > parseInt(1) ? 1 : 0),
+              quantity:
+                parseInt(item.quantity) -
+                (parseInt(item.quantity) > parseInt(1) ? 1 : 0),
             }
           : item
       )
@@ -44,7 +56,7 @@ const CheckOut = ({ checkout, productQuantity }) => {
   };
   // count subtotal
   const total = cartProduct.map((item) => {
-    return item.value * parseInt(item.price);
+    return item.quantity * parseInt(item.price);
   });
   const sum = total.reduce((a, b) => a + b, 0);
 

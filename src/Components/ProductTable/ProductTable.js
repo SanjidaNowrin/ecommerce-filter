@@ -14,13 +14,13 @@ const ProductTable = ({
           <tr>
             <th scope="col">#</th>
             <th scope="col">Image</th>
-            <th scope="col" style={{ width: "25%" }}>
+            <th scope="col" style={{ width: "30%" }}>
               Name
             </th>
             <th scope="col">Size</th>
             <th scope="col">Stock</th>
             <th scope="col">Price</th>
-            <th scope="col" className="text-end">
+            <th scope="col" className="text-end" style={{ width: "25%" }}>
               Buy
             </th>
           </tr>
@@ -52,12 +52,12 @@ const ProductTable = ({
                 <td>
                   <div className="d-flex justify-content-evenly align-items-center">
                     <input
-                      size="1"
-                      defaultValue={1}
-                      type="text"
+                      size={1}
+                      defaultValue="1"
+                      type="number"
                       onBlur={(e) =>
                         handleQuantity({
-                          value: e.target.value,
+                          quantity: e.target.value,
                           id: id,
                           name: name,
                           price: price,
@@ -72,9 +72,19 @@ const ProductTable = ({
                     />
                     <input
                       type="checkbox"
-                      value={id}
+                      // value={{ id: id, name: name, price: price, img: img }}
                       className="form-check-input"
-                      onChange={handleChecked}
+                      onChange={(e) =>
+                        handleChecked({
+                          value: e.target.value,
+                          checked: e.target.checked,
+                          id: id,
+                          name: name,
+                          price: price,
+                          img: img,
+                          // productQuantity: productQuantity.quantity,
+                        })
+                      }
                     />
                   </div>
                 </td>
