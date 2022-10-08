@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { GrCart } from "react-icons/gr";
 import { ImSmile2 } from "react-icons/im";
-const ProductTable = ({ handleChecked, filterProducts }) => {
+const ProductTable = ({
+  handleChecked,
+  filterProducts,
+  handleQuantity,
+  productQuantity,
+}) => {
   return (
     <div>
       <table className="table">
@@ -44,9 +49,23 @@ const ProductTable = ({ handleChecked, filterProducts }) => {
                 <td>${price}</td>
                 <td>
                   <div className="d-flex justify-content-around align-items-center">
-                    {quantity}
+                    <input
+                      placeholder="1"
+                      type="text"
+                      onBlur={(e) =>
+                        handleQuantity({
+                          value: e.target.value,
+                          id: id,
+                          name: name,
+                          price: price,
+                          img: img,
+                        })
+                      }
+                    />
                     <GrCart
-                      onChange={(e) => handleChecked(e.target.checked.id)}
+                      onChange={(e) =>
+                        handleChecked({ value: e.target.checked.id, id: id })
+                      }
                     />
                     <input
                       type="checkbox"

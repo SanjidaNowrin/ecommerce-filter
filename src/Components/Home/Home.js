@@ -3,7 +3,13 @@ import Navbar from "../Navbar/Navbar";
 import ProductTable from "../ProductTable/ProductTable";
 import Products from "../../fakeData/products.json";
 
-const Home = ({ handleChecked, handleCart, checkedProduct }) => {
+const Home = ({
+  handleChecked,
+  handleQuantity,
+  handleCart,
+  checkedProduct,
+  // productQuantity,
+}) => {
   const [products, setProducts] = useState(Products);
   const [filterProducts, setFilterProducts] = useState([]);
 
@@ -60,6 +66,8 @@ const Home = ({ handleChecked, handleCart, checkedProduct }) => {
       />
       {/* product table filter */}
       <ProductTable
+        // productQuantity={productQuantity}
+        handleQuantity={handleQuantity}
         filterProducts={filterProducts}
         products={products}
         handleChecked={handleChecked}
